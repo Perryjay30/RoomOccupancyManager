@@ -53,5 +53,18 @@ class RoomManagerTest {
         assertEquals(772.99, result.getOverallEarningsForTheNight());
     }
 
+    @Test
+    public void testForSevenAvailablePremiumRoomsAndOneAvailableEconomyRooms() {
+        RoomAvailability availability = new RoomAvailability();
+        availability.setAvailablePremiumRooms(7);
+        availability.setAvailableEconomyRooms(1);
+        RoomOccupancy result = roomManager.makeReservation(availability);
+        assertEquals(7, result.getPremiumOccupied());
+        assertEquals(1, result.getEconomyOccupied());
+        assertEquals(1153.99, result.getTotalEarningsForPremium());
+        assertEquals(45, result.getTotalEarningsForEconomy());
+        assertEquals(1198.99, result.getOverallEarningsForTheNight());
+    }
+
 
 }
