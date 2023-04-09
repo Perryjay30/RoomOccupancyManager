@@ -39,6 +39,10 @@ public class RoomManager {
                 }
             }
         }
+        return roomOccupancyMethod(availability, premiumGuests, economyGuests);
+    }
+
+    private RoomOccupancy roomOccupancyMethod(RoomAvailability availability, List<Double> premiumGuests, List<Double> economyGuests) {
         boolean isLessThanTenElements = availability.getAvailablePremiumRooms() > 6
                 && availability.getAvailableEconomyRooms() < 4;
         if(isLessThanTenElements) {
@@ -48,6 +52,10 @@ public class RoomManager {
             economyGuests.sort(Comparator.reverseOrder());
             economyGuests.removeIf(guest -> guest < economyGuests.get(0));
         }
+        return getRoomOccupancy(premiumGuests, economyGuests);
+    }
+
+    private RoomOccupancy getRoomOccupancy(List<Double> premiumGuests, List<Double> economyGuests) {
         double totalEarningsForPremium = premiumGuests.stream().mapToDouble(Double::doubleValue).sum();
         double totalEarningsForEconomy = economyGuests.stream().mapToDouble(Double::doubleValue).sum();
         double overallEarningsForTheNight = totalEarningsForPremium + totalEarningsForEconomy;
