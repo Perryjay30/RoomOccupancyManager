@@ -15,7 +15,7 @@ class RoomManagerTest {
     private RoomManager roomManager;
 
     @Test
-    public void testThatAvailableRoomsForTheProvidesTheDesiredResult() {
+    public void testForThreeAvailablePremiumRoomsAndThreeAvailableEconomyRooms() {
         RoomAvailability availability = new RoomAvailability();
         availability.setAvailablePremiumRooms(3);
         availability.setAvailableEconomyRooms(3);
